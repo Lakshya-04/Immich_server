@@ -8,4 +8,8 @@ close
 docker compose down
 
 Backup of example takeout
-./immich-go -server=http://172.20.148.18:2283 -key=NlGGdFlvjJBu70yg0R3uWJ2lKFIPUsD94KTWvaIAmo upload -google-photos takeout-20250123T031447Z-00*.zip 
+./immich-go -server=http://172.20.148.18:2283 -key=5hFqcL5RNaxPZtZbFa5HAwxQdkEcIdpqhsopdFww upload -google-photos takeout-20250123T031447Z-00*.zip 
+
+
+Manual Backup of Immich
+sudo docker exec -t immich_postgres pg_dumpall --clean --if-exists --username=postgres | gzip > " /media/hmm/Media_server1/Manual_Backups/dump.sql.gz"
