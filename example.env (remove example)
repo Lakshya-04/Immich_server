@@ -1,15 +1,15 @@
-# You can find documentation for all the supported env variables at https://immich.app/docs/install/environment-variables
+# You can find documentation for all the supported env variables at https://docs.immich.app/install/env>
 
 # The location where your uploaded files are stored
-UPLOAD_LOCATION=/media/hmm/Media_server/immich_library
+UPLOAD_LOCATION=/mnt/big_boy/immich/library
 
-# The location where your database files are stored
-DB_DATA_LOCATION=./postgres
+# The location where your database files are stored. Network shares are not supported for the database
+DB_DATA_LOCATION=/mnt/big_boy/immich/postgres
 
-# To set a timezone, uncomment the next line and change Etc/UTC to a TZ identifier from this list: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List
- TZ=Etc/IN
+# To set a timezone, uncomment the next line and change Etc/UTC to a TZ identifier from this list: http>
+TZ=Etc/IN 
 
-# The Immich version to use. You can pin this to a specific version like "v1.71.0"
+# The Immich version to use. You can pin this to a specific version like "v2.1.0"
 IMMICH_VERSION=release
 
 # Connection secret for postgres. You should change it to a random password
@@ -20,3 +20,5 @@ DB_PASSWORD=postgres
 ###################################################################################
 DB_USERNAME=postgres
 DB_DATABASE_NAME=immich
+
+
