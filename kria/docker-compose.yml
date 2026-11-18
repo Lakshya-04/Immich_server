@@ -107,5 +107,6 @@ services:
       - /mnt/media_server/ntfy:/var/cache/ntfy
     environment:
       NTFY_CACHE_FILE: /var/cache/ntfy/cache.db
+      NTFY_CACHE_DURATION: 720h
       NTFY_BASE_URL: http://<kria-tailscale-ip>:8088
     restart: always
