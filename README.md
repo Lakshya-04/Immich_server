@@ -17,3 +17,16 @@ sudo docker exec -t immich_postgres pg_dumpall --clean --if-exists --username=po
 Add Aias to bashrc for clean launch and shutdown for Immich Docker Compose
 alias immich='cd immich_app && docker compose pull && docker compose up -d && cd ..'
 alias immich_down='cd immich_app && docker compose down && cd ..'
+
+
+## Kria KR260 setup (`kria/`)
+
+Production config for Immich on an AMD Kria KR260 (Ubuntu, arm64, library on a separate data drive).
+
+- `kria/docker-compose.yml` - Immich plus **Watchtower** (daily auto-update of the server and ML containers only; Postgres and Redis are pinned by digest) and a private **ntfy** server for update alerts (reach it over Tailscale, e.g. `http://<kria-tailscale-ip>:8088`, topic `kria-immich`).
+- `kria/example.env` - copy to `.env` and set `DB_PASSWORD`. Never commit the real `.env`.
+- `kria/scripts/immich-db-dump.sh` - nightly `pg_dumpall` (integrity-checked, keeps 7). Cron: `30 3 * * *`.
+- `kria/scripts/immich-library-backup.sh` - nightly rsync of originals to a second folder on the data drive; deleted/changed files are kept 60 days. Same-drive safety net only, not a replacement for an off-drive copy. Cron: `0 2 * * *`.
+- `kria/scripts/pull-kria-immich-db.sh` - run on another machine to pull the latest DB dumps (keeps 3).
+
+Manual update: `docker compose pull && docker compose up -d`. Take a DB dump first.
